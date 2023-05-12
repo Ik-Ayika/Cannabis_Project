@@ -1,0 +1,70 @@
+---
+title: "Cannabis Control"
+author: "Ikemonso"
+date: "2023-05-10"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+### Often times, the average smokers claim that "it doesn't matter as long as I get high" while more seasoned users understand that characteristics such as strain, aroma, and taste, can be important factors in the day-to-day smoke sessions. In this project we'll look at those different factors and try to isolate the difference in the strains provided by the dataset
+
+## Libraries & Packages
+```{r}
+library(readr)
+library(tidyverse)
+library(lubridate)
+library(dplyr)
+library(mdsr)
+library(janitor)
+library(stringr)
+library(stringi)
+library(ggfittext)
+library(ISOweek)
+cannabis <- read_csv("Data/cannabis.csv")
+```
+
+
+## Worst Weed
+### Let's look at the strain that's done the worst and see if we can find any trends that may dampen user experience.
+```{r}
+worst <- cannabis %>% 
+  arrange(Rating) %>% 
+  head(10) %>% 
+  select(Strain, Type, Effects, Flavor)
+worst
+
+#Now that we've seen the bottom 10, we'll see what characteristic (type, flavor, or effect) is most likely to effect rating
+#First we compare the effects with the Effects column, a quick look at the table again shows us that we have many "None" values so we'll use this as the true statement to get the proportion
+
+
+worst_type <- worst %>% 
+  count(Type) %>% 
+  mutate(TypeProportion = prop.table(n))
+
+worst_effects
+  count(Effects) %>% 
+  mutate(EffectsProportion = prop.table(n))
+
+worst_flavor    
+  count(Flavor) %>% 
+  mutate(FlavorProportion = prop.table(n))
+
+```
+
+
+## Trust the process
+### At some point, every experienced smoker has thought about growing their own plant. But the benefits of a personal source are outweighed by the responsbility it requires (especially in terms of time). Let's see if we can isolate the strain that's easiest to produce, time-wise.
+```{r}
+duration <- cannabis %>% 
+#Filter Descriptions that include growth cycle duration  
+  filter(str_detect(Description, "\\d+\\s*(day|week|month|year)"),
+         str_detect(Description, "[0-9]+[- ][a-zA-Z]+")) %>% 
+  arrange(Rating) %>% 
+  head(5) %>% 
+  pull(Description)
+duration
+
+```
+
