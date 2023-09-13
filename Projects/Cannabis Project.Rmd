@@ -22,7 +22,7 @@ library(stringr)
 library(stringi)
 library(ggfittext)
 library(ISOweek)
-cannabis <- read_csv("Data/cannabis.csv")
+cannabis <- read_csv("/Users/ikospiko/Desktop/DATA_PROJECTS/Nintendo_DS/cannabis.csv")
 ```
 
 
@@ -43,13 +43,6 @@ worst_type <- worst %>%
   count(Type) %>% 
   mutate(TypeProportion = prop.table(n))
 
-worst_effects
-  count(Effects) %>% 
-  mutate(EffectsProportion = prop.table(n))
-
-worst_flavor    
-  count(Flavor) %>% 
-  mutate(FlavorProportion = prop.table(n))
 
 ```
 
@@ -57,14 +50,14 @@ worst_flavor
 ## Trust the process
 ### At some point, every experienced smoker has thought about growing their own plant. But the benefits of a personal source are outweighed by the responsbility it requires (especially in terms of time). Let's see if we can isolate the strain that's easiest to produce, time-wise.
 ```{r}
-duration <- cannabis %>% 
+#duration <- cannabis %>% 
 #Filter Descriptions that include growth cycle duration  
-  filter(str_detect(Description, "\\d+\\s*(day|week|month|year)"),
-         str_detect(Description, "[0-9]+[- ][a-zA-Z]+")) %>% 
-  arrange(Rating) %>% 
-  head(5) %>% 
-  pull(Description)
-duration
+#  filter(str_detect(Description, "\\d+\\s*(day|week|month|year)"),
+ #        str_detect(Description, "[0-9]+[- ][a-zA-Z]+")) %>% 
+  #arrange(Rating) %>% 
+  #head(5) %>% 
+  #pull(Description)
+#duration
 
 ```
 
