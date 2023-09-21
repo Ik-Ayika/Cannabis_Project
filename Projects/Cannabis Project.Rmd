@@ -60,4 +60,3 @@ worst_type <- worst %>%
 #duration
 
 ```
-
