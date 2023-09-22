@@ -22,7 +22,7 @@ library(stringr)
 library(stringi)
 library(ggfittext)
 library(ISOweek)
-cannabis <- read_csv("/Users/ikospiko/Desktop/DATA_PROJECTS/Nintendo_DS/Cannabis Analysis Project/Cannabis_Project/Data/cannabis.csv")
+cannabis <- read_csv("/Users/ikospiko/Desktop/DATA_PROJECTS/Nintendo_DS/Cannabis Analysis Project/Data/cannabis.csv")
 ```
 
 
